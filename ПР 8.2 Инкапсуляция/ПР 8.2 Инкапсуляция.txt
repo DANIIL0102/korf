@@ -1,0 +1,143 @@
+import random
+
+print('Задача 1')
+
+
+class Counter:  # Класс "Счётчик" с полной инкапсуляцией
+    __k = 0
+
+    def add(self):
+        self.__k += 1
+
+    def get(self):
+        return self.__k
+
+    def clear(self):
+        self.__k = 0
+
+    def __str__(self):
+        return str(self.__k)
+
+
+a = Counter()  # Создание счётчика
+print(a)  # Вывод счётчика (0)
+a.add()  # Прибавляем к счётчика единицу
+print(a)  # Вывод счётчика (1)
+
+input()
+
+print('Задача 2')
+
+
+import random
+
+
+class Panda:  # Класс "Панда"
+    def __init__(self):
+        self.__hungered = 100  # Изначальная сытость панды
+
+    def getHungred(self):  # Инкапсуляция сытости панды
+        return self.__hungered
+
+    def eat(self, grass):  # Прибавление пищевой ценности травы к сытости панды
+        self.__hungered += grass.getHunger()
+
+    def isHungry(self):  # Проверяем, голодна ли панда
+        return self.__hungered < 90
+
+    def tact(self):  # Панда  постепенно голодает
+        self.__hungered -= random.randint(1, 10)
+
+    def isAlive(self):  # Проверяем, жива ли ещё панда
+        return self.__hungered > 1
+
+
+class Bamboo:  # Класс "Бамбук"
+    def __init__(self, hunger):
+        self.__hunger = hunger
+
+    def getHunger(self):  # Инкапсуляция пищевой ценности ,бамбука
+        return self.__hunger
+
+
+def main():  # Основная функция
+    panda = Panda()  # Создание Панды
+
+    print("Панда подошла к бамбуку...")
+
+    while panda.isAlive():  # Панда будет есть и голодать пока жива
+        panda.tact()
+
+        print(f"Панда проголодалась до {panda.getHungred()}%")
+
+        if panda.isHungry() and panda.isAlive():
+            grass = Bamboo(random.randint(1, 5))  # Панда находит бамбук со случайной пищевой ценностью
+            panda.eat(grass)  # Панда ест бамбук
+            print(f"Панда покушала бамбук и восстановила {grass.getHunger()} голода до {panda.getHungred()}")
+
+    print("Панда умерла от голода. Бедная панда :(")
+
+
+main()  # Вызов основной функции
+
+input()
+
+
+print('Задача 3')
+
+
+class Clock:  # Класс "Часы"
+    def __init__(self):
+        self.__hours = -1
+        self.__minutes = -1
+        self.__seconds = -1
+        while self.__hours < 0 or self.__hours > 23:  # Вводим часы в правильном формате
+            self.__hours = int(input('Введите часы в правильном формате: '))
+        while self.__minutes < 0 or self.__minutes > 59:  # Вводим минуты в правильном формате
+            self.__minutes = int(input('Введите минуты в правильном формате: '))
+        while self.__seconds < 0 or self.__seconds > 59:  # Вводим секунды в правильном формате
+            self.__seconds = int(input('Введите секунды в правильном формате: '))
+
+    def get_hours(self):  # Инкапсуляция часов
+        return self.__hours
+
+    def get_minutes(self):  # Инкапсуляция минут
+        return self.__minutes
+
+    def get_seconds(self):  # Инкапсуляция секунд
+        return self.__seconds
+
+    def add_hours(self):  # Добавляем +1 час
+        self.__hours += 1
+        if self.__hours > 23:
+            self.__hours = 0
+
+    def add_minutes(self):  # Добавляем +1 минуту
+        self.__minutes += 1
+        if self.__minutes > 59:
+            self.__minutes = 0
+            self.add_hours()  # Добавляем +1 час если 59мин+1мин
+
+    def add_seconds(self):  # Добавляем +1 секунду
+        self.__seconds += 1
+        if self.__seconds > 59:
+            self.__seconds = 0
+            self.add_minutes()  # Добавляем +1 минуту если 59сек+1сек
+
+    def __str__(self):  # Функция, показывающая время
+        return f'{self.__hours}:{self.__minutes}:{self.__seconds}'
+
+
+def main():  # Основная функция
+    clock = Clock()  # Создание часов
+    print(clock)  # Показываем время
+    choose = 0
+    while choose != 'stop':  # Настройка часов
+        choose = input('Выберите, к чему прибавить 1 (1 - Час|2 - Минута|3 - Секунда|stop - стоп): ')
+        if choose == '1':
+            clock.add_hours()
+        if choose == '2':
+            clock.add_minutes()
+        if choose == '3':
+            clock.add_seconds()
+        print(clock)  # Показываем время

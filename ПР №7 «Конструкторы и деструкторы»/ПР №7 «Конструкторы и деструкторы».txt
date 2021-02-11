@@ -1,0 +1,89 @@
+print('№1')
+
+
+class Devil:
+    legs = 2
+    arm = 2
+    head = 1
+    heart = 9
+    say = 'Welcome to the hell'
+
+    def __init__(self, legs=legs, say=say):
+        print('init is start', legs, say)
+        print('меня бьют')
+
+    def say_smth(self, text=None):
+        if text:
+            self.say = text
+            self.arm_position = 'well'
+            print(self.arm_position)
+        print(self.say)
+
+    def __del__(self):
+        print("Удаление экзеимпляра класса" + self.__str__())
+
+
+bob = Devil(2)
+
+jack = Devil(4, 'I\'m Jack')
+
+print('№2')
+
+
+class Parent:
+    parent_attr = 100
+
+    def __init__(self):
+        print('Вызов родительского метода')
+
+    def parent_method(self):
+        print('вызов родительского метода')
+
+    def set_attr(self, attr):
+        Parent.parent_attr = attr
+
+    def get_attr(self):
+        print('Атрибут родителя: {}'.format(Parent.parent_attr))
+
+
+class Child(Parent):
+    def __init__(self):
+        print('Вызов конструктора класса наследника')
+
+    def child_method(self):
+        print('Вызов метода класса наследника')
+
+
+c = Child()  # экземпляр класса Child
+c.child_method()  # вызов метода child_method
+c.parent_method()  # вызов родительского метода parent_method
+c.set_attr(200)  # еще раз вызов родительского метода
+c.get_attr()  # снова вызов родительского метода
+
+print('№3')
+
+
+class Animal:
+    legs = 4
+    tail = 1
+    head = 1
+    says = None
+
+    def say(self, text):
+        self.says = text
+        return self.says
+
+
+animal = Animal()
+print(animal.says)
+print(animal.say("АААААААРРРРРРГГГГ"))
+
+
+class Dog:
+
+    def __init__(self):
+        self.says = "ГГГГАААаавввв"
+        print(dir(self))
+
+
+print(Dog().says)

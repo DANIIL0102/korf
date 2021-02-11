@@ -1,0 +1,53 @@
+import random
+
+m = (random.randint(0, 10))
+
+
+class War:
+    def __init__(self, name, health=100):
+        self.name = name
+        self.health = health
+        print('Создан воин {} со здоровьем {}'.format(self.name, self.health))
+
+    def Attack(self, enemyWar):
+        if True:
+            print('Воин {} нанес урон {} воину {}'.format(self.name, enemyWar.name, random.randint(0, 10)))
+            enemyWar.setHealth(
+                enemyWar.getHealth() - m
+            )
+        else:
+            print('Некореектно заданно здоровье для воина {}'.format(enemyWar.name))
+            print(type(enemyWar.getHealth()))
+
+    def setHealth(self, health):
+        self.health = health
+        print('Установленно здоровье {} для воина {}'.format(self.health, self.name))
+
+    def getHealth(self):
+        try:
+            return self.health
+            print('Здоровье воина {} — {}'.format(self.name, self.health))
+        except:
+            return 'Здоровье не заданно'
+            print('Здоровье для воина {} не заданно'.format(self.name))
+
+
+one = War('red', 105)
+two = War('blue', 103)
+
+while (one.health > 0) and (two.health > 0):
+    round = random.randint(1, 2)
+
+    if round == 1:
+        one.Attack(two)
+    elif round == 2:
+        two.Attack(one)
+
+if round == 1:
+    name = one.name
+    enemy_name = two.name
+elif round == 2:
+    name = two.name
+    enemy_name = one.name
+
+print('Поздравляем воина {}! Он одержал победу над воином {}'.format(name, enemy_name))
