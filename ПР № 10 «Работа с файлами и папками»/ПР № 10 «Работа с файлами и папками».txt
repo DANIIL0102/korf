@@ -1,0 +1,69 @@
+print('№1')
+import os
+
+for dirpath, dirnames, filenames in os.walk('.'):
+    for dirname in dirnames:
+        print('Католог:', os.path.join(dirpath, dirname))
+    for filename in filenames:
+        print('Файл:', os.path.join(dirpath, filename))
+print("Текуща деректория:", os.getcwd())
+
+print('№2')
+
+
+def Read_txt(file, separator):
+    if separator:
+        separator = separator
+    else:
+        separator = '\n'
+    with open(file, 'r', encoding='utf-8') as f:
+        content = f.read().split(separator)
+    print(f'Содержимое текстового документа: {content}')
+
+
+file = input('Введите директорию .txt файла: ')
+separator = input('По какому разделителю будет разделён текст? ')
+Read_txt(file, separator)
+
+print()
+print('№3')
+with open('111.txt', '+a', encoding='utf-8') as f:
+    print(f.write('я не люблю весну \n'))
+
+print("№4")
+
+
+def Work4():
+    troithniki = 0
+    direcroria = input('Введите директиве txt файла: ')
+    with open(direcroria, 'r', encoding='utf-8') as f:
+        sudent = f.read().splitlines()
+    print(sudent)
+    for i in sudent:
+        rob = int(i[-1])
+        troithniki += rob
+        if rob < 3:
+            print(i)
+    troithniki /= len(sudent)
+    print(f'Средний балл класса:{troithniki}')
+
+
+Work4()
+print()
+
+print('№5')
+
+
+def Work5():
+    direcroria = input('Введите директиве txt файла: ')
+    with open(direcroria, 'r', encoding='utf-8') as f:
+        stroki = f.read().splitlines()
+    print(f'Количество строк:{len(stroki)}')
+    for i in stroki:
+        print(f'Количество строк: {i}')
+        print(f'Колличество символов: {len(i)}')
+        print(f'Колличество символов: {len(i.split(" "))}')
+
+
+Work5()
+print()

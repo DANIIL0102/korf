@@ -1,0 +1,53 @@
+print('№1')
+
+def to_set(top):
+    draft = set(top)
+    return f'Множество: {draft}, \nДлина множества:{len(draft)}'
+
+
+vopros = input('Список или страка?')
+if vopros.lower() == 'список':
+    spisok = list(map(int, input('Введите список').split()))
+    print(to_set(spisok))
+else:
+    storca = list(map(int, input('Введите строка').split()))
+    print(to_set(storca))
+
+print('№2')
+mnogestvo1 = {3, 4, 5, 6, 20}
+mnogestvo2 = {4, 6, 7, 8, 9}
+mnogestvo3 = {5, 3, 8, 1}
+
+
+def diff(mnogestvo1, mnogestvo2, mnogestvo3, symmetric=True):
+    if symmetric:
+        return f'Симметричная разность {mnogestvo1 ^ mnogestvo2 ^ mnogestvo3}'
+    else:
+        return f'Разность: {mnogestvo1 - mnogestvo2 - mnogestvo3}'
+
+
+print(diff(mnogestvo1, mnogestvo2, mnogestvo3))
+print(diff(mnogestvo1, mnogestvo2, mnogestvo3, symmetric=False))
+
+print('№3')
+mn1 = {1, 8, 3, 5}
+mn2 = {3, 5}
+mn3 = {5, 3, 8, 1}
+mn4 = {90, 100}
+
+
+def superset(mn1, mn2):
+    if mn1 > mn2:
+        print(f'Объект {mn1} является чистым супермножеством')
+    elif mn1 == mn2:
+        print(f'Множества равны')
+    elif mn1 < mn2:
+        print(f'Объект {mn2} является чистым супермножеством')
+    else:
+        print('Супермножество не обнаружено')
+
+
+superset(mn1, mn2)
+superset(mn1, mn3)
+superset(mn2, mn3)
+superset(mn4, mn2)
